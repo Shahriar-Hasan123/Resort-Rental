@@ -136,12 +136,26 @@ body {
 main {
   margin-top: 40px;
   padding: 0 80px;
-  /* change margin-left to padding */
   display: grid;
   grid-template-columns: 1fr 400px;
   grid-template-rows: auto auto auto auto auto auto auto;
   column-gap: 30px;
   align-items: start;
+}
+
+@media (max-width: 1024px) {
+  main {
+    padding: 0 40px;
+    grid-template-columns: 1fr 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 20px;
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
 }
 
 .nav-bar {
@@ -161,6 +175,12 @@ main {
 .resort-property p {
   font-size: 30px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .resort-property p {
+    font-size: 22px;
+  }
 }
 
 .stats {
@@ -202,6 +222,19 @@ main {
   max-width: 1200px;
   border-radius: 12px;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .side-images {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
 }
 
 .main-image {
@@ -255,14 +288,21 @@ main {
 }
 
 .booking-card {
-  /* margin-top: 190px; */
   width: 380px;
   background-color: white;
   border-radius: 30px;
   padding: 30px;
   font-family: sans-serif;
   box-shadow: #dbfcfb;
-  border: 1px solid #eee
+  border: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .booking-card {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+  }
 }
 
 .booking-card h2 {
@@ -272,18 +312,128 @@ main {
   margin-bottom: 25px;
 }
 
+@media (max-width: 768px) {
+  .booking-card h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+/* ── Date Field Labels ── */
+.date-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .date-field label {
+    font-size: 10px;
+  }
+}
+
+/* ── Booking card needs relative position ── */
+.booking-card {
+  position: relative;
+}
+
+/* ── Datepicker calendar position ── */
+.datepicker {
+  position: absolute !important;
+  top: auto !important;
+  left: -28px !important;
+  z-index: 999 !important;
+}
+
+@media (max-width: 768px) {
+  .datepicker {
+    left: 0 !important;
+    right: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+.datepicker {
+  position: absolute !important;
+  top: auto !important;
+  left: -28px !important;       /* align with card edge */
+  right: -28px !important;
+  width: auto !important;
+  z-index: 999 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid #eee !important;
+  font-family: Arial, sans-serif !important;
+}
+
+/* ── Both months fit inside card ── */
+.datepicker__months {
+  width: 100% !important;
+}
+
+.datepicker__month {
+  width: 50% !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+}
+
+/* ── Past dates disabled ── */
+.datepicker__month-day--disabled {
+  color: #ccc !important;
+  cursor: not-allowed !important;
+  text-decoration: line-through !important;
+  pointer-events: none !important;
+}
+
+/* ── Selected range ── */
+.datepicker__month-day--selected,
+.datepicker__month-day--first-day-selected,
+.datepicker__month-day--last-day-selected {
+  background-color: #186d6a !important;
+  color: #fff !important;
+}
+
+.datepicker__month-day--hovering {
+  background-color: #e9f7f6 !important;
+  color: #111 !important;
+}
+
+/* ── Date Inputs ── */
+.select-date {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+  color: #111;
+}
+
+.select-date:focus {
+  outline: none;
+  border-color: #186d6a;
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .date-row {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
-}
-
-.select-date {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
+  margin-bottom: 14px;
 }
 
 .status-box {
@@ -330,11 +480,23 @@ main {
   background: #f57c00;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 14px;
   border-radius: 30px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #e67300;
+}
+
+@media (max-width: 768px) {
+  .btn-primary {
+    padding: 12px;
+    font-size: 16px;
+  }
 }
 
 .redirect-text {
@@ -380,6 +542,30 @@ main {
   font-size: 13px;
   margin-top: 15px;
   font-family: sans-serif;
+}
+
+.side-bar {
+  grid-column: 2 / 3;
+  grid-row: 1 / 4;
+  position: sticky;
+}
+
+@media (max-width: 768px) {
+  .side-bar {
+    grid-column: 1 / 2;
+    grid-row: auto;
+    position: static;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-bar {
+    grid-column: 1 / 2;
+    grid-row: auto;
+    position: static;
+    margin-top: 20px;
+  }
 }
 
 .side-bar {
@@ -448,6 +634,19 @@ main {
   color: #444;
   line-height: 1.7;
   margin-bottom: 12px;
+}
+
+/* ── About Section: Show More / Show Less ── */
+.about-description p.clamp-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.about-description p.clamp-text.expanded {
+  -webkit-line-clamp: unset;
 }
 
 .about-amenities h3 {

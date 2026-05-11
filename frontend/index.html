@@ -8,7 +8,8 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <!-- Hotel Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hotel-datepicker@4.4.0/dist/css/hotel-datepicker.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -86,7 +87,7 @@
             <div class="main-image">
                 <img src="assests/main/image.jpg" alt="resort-image">
                 <button type="button" class="view-all-btn">
-                    <span class="icon">📷</span> View all images (180)
+                    <span class="icon">📷</span> View all images (10)
                 </button>
             </div>
 
@@ -105,40 +106,42 @@
                 <form action="#">
                     <h2>Check Villa Availability</h2>
 
-                    <!-- date selector -->
+                    <!-- Single input — Hotel Datepicker fills it with "checkin - checkout" -->
                     <div class="date-row">
-                        <select class="select-date" aria-label="Check-in date">
-                            <option value="">June 26</option>
-                            <option value="">June 27</option>
-                            <option value="">June 28</option>
-                        </select>
-                        <select class="select-date" aria-label="Check-out date">
-                            <option value="">June 29</option>
-                            <option value="">July 1</option>
-                            <option value="">July 2</option>
-                        </select>
+                        <div class="date-field">
+                            <label for="checkin">Check-in</label>
+                            <input type="text" id="checkin" class="select-date" placeholder="Select date" readonly
+                                aria-label="Check-in date">
+                        </div>
+                        <div class="date-field">
+                            <label for="checkout">Check-out</label>
+                            <input type="text" id="checkout" class="select-date" placeholder="Select date" readonly
+                                aria-label="Check-out date">
+                        </div>
                     </div>
 
-                    <!-- status msg -->
-                    <div class="status-box">
+                    <!-- Hidden input for Hotel Datepicker -->
+                    <input type="text" id="rangePicker" class="hidden-input">
+
+                    <!-- Status message — hidden until dates selected -->
+                    <div class="status-box" id="status-box" style="display:none;">
                         <span><i class="fa-solid fa-check check"></i></span> Dates selected are available
                     </div>
 
-                    <!-- pricing -->
+                    <!-- Pricing -->
                     <div class="price-info">
                         <div class="price-line">
                             <span>Price Per Night</span>
-                            <span>USD $600</span>
+                            <span id="price-per-night">USD $2,026</span>
                         </div>
                         <div class="price-line-total">
                             <span>Total Price</span>
-                            <span>USD $600</span>
+                            <span id="total-price">USD $2,026</span>
                         </div>
                     </div>
 
                     <button type="submit" class="btn-primary">Check Availability</button>
                     <p class="redirect-text">You will be redirected to <strong>Booking.com</strong></p>
-
                 </form>
 
                 <div class="card-footer">
@@ -179,16 +182,24 @@
                 <!-- Left: Description -->
                 <div class="about-description">
                     <h2>About</h2>
-                    <p>Rediscover Sanctuary Cap Cana, the Dominican Republic's most exclusive adults-only all-inclusive
-                        resort.</p>
-                    <p>You'll be delighted by the resorts $45 million modernization as you explore spectacular suites,
-                        artfully crafted lobbies, updated restaurants and bars, enhanced world-class spa and
-                        state-of-the-art fitness center. Sanctuary Cap Cana, A Luxury Collection Adult All-Inclusive
-                        Resort is located in Cap Cana, a private gated community retreat inside Punta Cana. Cap Cana is
-                        made up of 30,000 acres of flawless beaches...</p>
-                    <a href="#" class="show-more">Show more</a>
-                </div>
+                    <p id="about-text" class="clamp-text">
+                        Rediscover Sanctuary Cap Cana, the Dominican Republic's most exclusive
+                        adults-only all-inclusive resort. You'll be delighted by the resorts
+                        $45 million modernization as you explore spectacular suites, artfully
+                        crafted lobbies, updated restaurants and bars, enhanced world-class spa
+                        and state-of-the-art fitness center. Sanctuary Cap Cana, A Luxury
+                        Collection Adult All-Inclusive Resort is located in Cap Cana, a private
+                        gated community retreat inside Punta Cana. Cap Cana is made up of
+                        30,000 acres of flawless beaches. The resort features 323 luxury suites,
+                        each with a private balcony or terrace overlooking the stunning Caribbean
+                        Sea. Guests enjoy world-class dining at 10 restaurants, unlimited premium
+                        beverages, and access to an award-winning spa. The pristine beach
+                        stretches over 1.5 miles of white sand, offering water sports,
+                        snorkeling, and kayaking.
+                    </p>
 
+                    <a href="#" class="show-more" id="about-toggle">Show more</a>
+                </div>
                 <!-- Right: Amenities -->
                 <div class="about-amenities">
                     <h3>Room-Specific Amenities</h3>
@@ -1036,7 +1047,17 @@
             </div>
         </div>
 
+        <!-- Gallery modal -->
         <script src="js/gallery.js"></script>
+        <script src="js/showmore.js"></script>
+        <!-- fecha.js — required by Hotel Datepicker -->
+        <script src="https://cdn.jsdelivr.net/npm/fecha@4.2.3/lib/fecha.umd.js"></script>
+
+        <!-- Hotel Datepicker JS — must come after fecha.js -->
+        <script src="https://cdn.jsdelivr.net/npm/hotel-datepicker@4.4.0/dist/js/hotel-datepicker.min.js"></script>
+
+        <!-- Datepicker initialization -->
+        <script src="js/datepicker.js"></script>
 </body>
 
 </html>
