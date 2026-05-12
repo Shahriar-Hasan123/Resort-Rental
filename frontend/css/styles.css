@@ -931,7 +931,7 @@ main {
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 16px;
-  background-image: url('assests/contact/image.png');
+  background-image: url('../assests/contact/image.png');
   background-size: cover;
   background-position: center;
   min-height: 160px;
@@ -1736,24 +1736,6 @@ main {
   background: #e06c00;
 }
 
-/* Sticky Map */
-/* .nearby-map {
-  margin-top: 70px;
-  position: sticky;
-  top: 20px;
-  height: 710px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-  width: 100%;
-}
-
-.nearby-map iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: 0;
-} */
 
 
 /* ── Highlighted property card (clicked from map marker) ── */
@@ -1768,8 +1750,8 @@ main {
 /* ── Map container ── */
 .nearby-map {
   position: sticky;
-  top: 80px;
-  height: 680px;      
+  top: 70px;
+  height: 725px;      
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid #ddd;
@@ -1811,7 +1793,7 @@ main {
   position: relative;
   min-height: 160px;
   /* smaller height */
-  background-image: url('frontend/assests/contact/image1.png');
+  background-image: url('../assests/contact/image1.png');
   background-size: cover;
   background-position: center;
 }

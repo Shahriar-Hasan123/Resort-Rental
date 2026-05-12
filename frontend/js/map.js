@@ -46,7 +46,6 @@ function initMap() {
     addMarkers(lastFetchedItems);
   }
 
-  console.log('Map initialized');
 }
 
 // ── Clear all existing markers ──
@@ -73,8 +72,6 @@ function addMarkers(items) {
     const lat        = parseFloat(item.GeoInfo?.Lat);
     const lng        = parseFloat(item.GeoInfo?.Lng);
     const name       = item.Property?.PropertyName || 'Property';
-
-    console.log(`Property: ${name} | Lat: ${lat} | Lng: ${lng}`);
 
     if (isNaN(lat) || isNaN(lng)) {
       console.warn(`Skipping ${propertyId} — no valid coordinates`);
@@ -129,7 +126,6 @@ function addMarkers(items) {
     validCount++;
   });
 
-  console.log(`Total markers added: ${validCount}`);
 
   // Auto fit map to show all markers
   if (validCount > 0) {

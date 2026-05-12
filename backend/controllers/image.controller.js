@@ -1,7 +1,6 @@
 const fs   = require('fs');
 const path = require('path');
 
-// GET /api/images 
 // Reads all files from the images/ directory and returns their URLs as an array
 const getImages = (req, res) => {
 

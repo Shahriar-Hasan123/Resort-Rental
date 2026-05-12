@@ -1,7 +1,6 @@
 const path = require('path');
 const fs   = require('fs');
 
-// GET /api/get-property 
 const getProperty = (req, res) => {
 
   const query = req.query;
