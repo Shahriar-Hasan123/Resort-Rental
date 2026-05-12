@@ -1737,7 +1737,7 @@ main {
 }
 
 /* Sticky Map */
-.nearby-map {
+/* .nearby-map {
   margin-top: 70px;
   position: sticky;
   top: 20px;
@@ -1753,6 +1753,27 @@ main {
   height: 100%;
   display: block;
   border: 0;
+} */
+
+
+/* ── Highlighted property card (clicked from map marker) ── */
+.card-highlighted {
+  outline: 3px solid #f57c00;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(245, 124, 0, 0.2);
+  border-radius: 14px;
+  transition: outline 0.2s, box-shadow 0.2s;
+}
+
+/* ── Map container ── */
+.nearby-map {
+  position: sticky;
+  top: 80px;
+  height: 680px;      
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #e5e3df;  
 }
 
 /*  Responsive  */

@@ -5,6 +5,7 @@ const cors           = require('cors');
 const path           = require('path');
 const propertyRoutes = require('./routes/property.route');
 const imageRoutes    = require('./routes/image.route');
+const configRoutes   = require('./routes/config.route');   // ← add this
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -13,12 +14,13 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// ─── Serve Static Image Files 
+// ─── Static Files 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// ─── Connect Routes 
+// ─── Routes
 app.use('/api', propertyRoutes);
 app.use('/api', imageRoutes);
+app.use('/api', configRoutes);                             // ← add this
 
 // ─── Start Server 
 app.listen(PORT, () => {
