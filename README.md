@@ -105,7 +105,6 @@ Resort-Rental/
 
 └── README.md                         # This file
 ```
-uick
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
