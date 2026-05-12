@@ -1,0 +1,425 @@
+   <style>
+
+
+
+.nearby-section {
+  padding: 40px 80px 40px 80px;
+  /* match main padding exactly */
+  background: #dbfcfb;
+}
+
+.nearby-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  /* 380px matches booking card width */
+  gap: 30px;
+  align-items: start;
+}
+
+.nearby-heading {
+  margin-bottom: 24px;
+}
+
+.nearby-heading h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+/*  Property Cards Grid  */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/*  Individual Property Card  */
+.property-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+  transition: box-shadow 0.2s;
+}
+
+.property-card:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+/*  Image + Overlays  */
+.property-img-wrap {
+  position: relative;
+}
+
+.property-img-wrap img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.price-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: #fff;
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.card-actions button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.88);
+  color: #444;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.card-actions button:hover {
+  background: #fff;
+}
+
+/* Card Body  */
+.property-body {
+  padding: 14px 16px;
+}
+
+.property-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.property-rating {
+  font-size: 12px;
+  color: #333;
+}
+
+.property-type {
+  font-size: 12px;
+  color: #888;
+}
+
+.property-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.property-amenities {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.property-location {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 14px;
+}
+
+/* Card Footer */
+.property-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.booking-logo {
+  height: 15px;
+  object-fit: contain;
+}
+
+.btn-availability {
+  background: #f57c00;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.btn-availability:hover {
+  background: #e06c00;
+}
+
+/* Sticky Map */
+.nearby-map {
+  margin-top: 70px;
+  position: sticky;
+  top: 20px;
+  height: 710px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.nearby-map iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+/*  Responsive  */
+@media (max-width: 1024px) {
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nearby-section {
+    padding: 30px 20px;
+  }
+
+  .nearby-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .nearby-map {
+    height: 300px;
+    position: static;
+  }
+
+  .property-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+   </style>
+   
+   
+   <section class="nearby-section" aria-label="Other resorts nearby">
+        <div class="nearby-inner">
+
+            <div class="nearby-content">
+                <div class="nearby-heading">
+                    <h2>Other All-Inclusive Resorts You May Like Nearby</h2>
+                    <p class="section-subtitle">Condimentum Cursus Commodo Lorema Non Mi Turpis Semper Dictum</p>
+                </div>
+
+                <div class="property-grid">
+
+                    <!-- Card 1 -->
+                    <article class="property-card">
+                        <div class="property-img-wrap">
+                            <img src="assests/others/image1.png" alt="Beachfront all-inclusive resort with ocean view"
+                                width="320" height="200" loading="lazy">
+                            <span class="price-tag">From $11,857</span>
+                            <div class="card-actions">
+                                <button type="button" aria-label="Share"><i class="fas fa-share-alt"></i></button>
+                                <button type="button" aria-label="View on map"><i
+                                        class="fas fa-map-marker-alt"></i></button>
+                                <button type="button" aria-label="Save to wishlist"><i
+                                        class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="property-body">
+                            <div class="property-meta">
+                                <span class="property-rating"><span class="star-icon">★</span> 5.0 (3 Reviews)</span>
+                                <span class="property-type">Villa</span>
+                            </div>
+                            <h3 class="property-name">Hotel Name Goes Here</h3>
+                            <p class="property-amenities">Air Conditioner · Bedding/Linens · Balcony/Terrace</p>
+                            <p class="property-location">Aruba &gt; Zona Hotelera</p>
+                            <div class="property-footer">
+                                <img src="assests/logo/vrbo.png" alt="Book on Vrbo" class="booking-logo" height="20">
+                                <a href="#" class="btn-availability">View Availability</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="property-card">
+                        <div class="property-img-wrap">
+                            <img src="assests/others/image2.png" alt="Luxury resort pool surrounded by tropical gardens"
+                                width="320" height="200" loading="lazy">
+                            <span class="price-tag">From $11,857</span>
+                            <div class="card-actions">
+                                <button type="button" aria-label="Share"><i class="fas fa-share-alt"></i></button>
+                                <button type="button" aria-label="View on map"><i
+                                        class="fas fa-map-marker-alt"></i></button>
+                                <button type="button" aria-label="Save to wishlist"><i
+                                        class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="property-body">
+                            <div class="property-meta">
+                                <span class="property-rating"><span class="star-icon">★</span> 5.0 (3 Reviews)</span>
+                                <span class="property-type">Villa</span>
+                            </div>
+                            <h3 class="property-name">Hotel Name Goes Here</h3>
+                            <p class="property-amenities">Air Conditioner · Bedding/Linens · Balcony/Terrace</p>
+                            <p class="property-location">Aruba &gt; Zona Hotelera</p>
+                            <div class="property-footer">
+                                <img src="assests/logo/booking.png" alt="Book on Booking.com" class="booking-logo"
+                                    height="20">
+                                <a href="#" class="btn-availability">View Availability</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="property-card">
+                        <div class="property-img-wrap">
+                            <img src="assests/others/image3.png"
+                                alt="Aerial view of beachside resort with clear blue water" width="320" height="200"
+                                loading="lazy">
+                            <span class="price-tag">From $11,857</span>
+                            <div class="card-actions">
+                                <button type="button" aria-label="Share"><i class="fas fa-share-alt"></i></button>
+                                <button type="button" aria-label="View on map"><i
+                                        class="fas fa-map-marker-alt"></i></button>
+                                <button type="button" aria-label="Save to wishlist"><i
+                                        class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="property-body">
+                            <div class="property-meta">
+                                <span class="property-rating"><span class="star-icon">★</span> 5.0 (3 Reviews)</span>
+                                <span class="property-type">Villa</span>
+                            </div>
+                            <h3 class="property-name">Hotel Name Goes Here</h3>
+                            <p class="property-amenities">Air Conditioner · Bedding/Linens · Balcony/Terrace</p>
+                            <p class="property-location">Aruba &gt; Zona Hotelera</p>
+                            <div class="property-footer">
+                                <img src="assests/logo/expedia.png" alt="Book on Expedia" class="booking-logo"
+                                    height="20">
+                                <a href="#" class="btn-availability">View Availability</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="property-card">
+                        <div class="property-img-wrap">
+                            <img src="assests/others/image4.png"
+                                alt="Clifftop resort with infinity pool overlooking the ocean" width="320" height="200"
+                                loading="lazy">
+                            <span class="price-tag">From $11,857</span>
+                            <div class="card-actions">
+                                <button type="button" aria-label="Share"><i class="fas fa-share-alt"></i></button>
+                                <button type="button" aria-label="View on map"><i
+                                        class="fas fa-map-marker-alt"></i></button>
+                                <button type="button" aria-label="Save to wishlist"><i
+                                        class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="property-body">
+                            <div class="property-meta">
+                                <span class="property-rating"><span class="star-icon">★</span> 5.0 (3 Reviews)</span>
+                                <span class="property-type">Villa</span>
+                            </div>
+                            <h3 class="property-name">Hotel Name Goes Here</h3>
+                            <p class="property-amenities">Air Conditioner · Bedding/Linens · Balcony/Terrace</p>
+                            <p class="property-location">Aruba &gt; Zona Hotelera</p>
+                            <div class="property-footer">
+                                <img src="assests/logo/vrbo.png" alt="Book on Vrbo" class="booking-logo" height="20">
+                                <a href="#" class="btn-availability">View Availability</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="property-card">
+                        <div class="property-img-wrap">
+                            <img src="assests/others/image5.png"
+                                alt="Tropical resort with overwater bungalows and palm trees" width="320" height="200"
+                                loading="lazy">
+                            <span class="price-tag">From $11,857</span>
+                            <div class="card-actions">
+                                <button type="button" aria-label="Share"><i class="fas fa-share-alt"></i></button>
+                                <button type="button" aria-label="View on map"><i
+                                        class="fas fa-map-marker-alt"></i></button>
+                                <button type="button" aria-label="Save to wishlist"><i
+                                        class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="property-body">
+                            <div class="property-meta">
+                                <span class="property-rating"><span class="star-icon">★</span> 5.0 (3 Reviews)</span>
+                                <span class="property-type">Villa</span>
+                            </div>
+                            <h3 class="property-name">Hotel Name Goes Here</h3>
+                            <p class="property-amenities">Air Conditioner · Bedding/Linens · Balcony/Terrace</p>
+                            <p class="property-location">Aruba &gt; Zona Hotelera</p>
+                            <div class="property-footer">
+                                <img src="assests/logo/booking.png" alt="Book on Booking.com" class="booking-logo"
+                                    height="20">
+                                <a href="#" class="btn-availability">View Availability</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="property-card">
+                        <div class="property-img-wrap">
+                            <img src="assests/others/image6.png"
+                                alt="Sandy beach resort with yellow hotel building and ocean" width="320" height="200"
+                                loading="lazy">
+                            <span class="price-tag">From $11,857</span>
+                            <div class="card-actions">
+                                <button type="button" aria-label="Share"><i class="fas fa-share-alt"></i></button>
+                                <button type="button" aria-label="View on map"><i
+                                        class="fas fa-map-marker-alt"></i></button>
+                                <button type="button" aria-label="Save to wishlist"><i
+                                        class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="property-body">
+                            <div class="property-meta">
+                                <span class="property-rating"><span class="star-icon">★</span> 5.0 (3 Reviews)</span>
+                                <span class="property-type">Villa</span>
+                            </div>
+                            <h3 class="property-name">Hotel Name Goes Here</h3>
+                            <p class="property-amenities">Air Conditioner · Bedding/Linens · Balcony/Terrace</p>
+                            <p class="property-location">Aruba &gt; Zona Hotelera</p>
+                            <div class="property-footer">
+                                <img src="assests/logo/expedia.png" alt="Book on Expedia" class="booking-logo"
+                                    height="20">
+                                <a href="#" class="btn-availability">View Availability</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Sticky Map -->
+            <div class="nearby-map">
+                <iframe title="Nearby resorts map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60841.48533657645!2d-68.4200!3d18.2717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea89a0ecb7f3ed1%3A0x8cf4d5e3f1c7a3b4!2sCap%20Cana%2C%20Dominican%20Republic!5e0!3m2!1sen!2sus!4v1680000000000"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </div>
+    </section>
