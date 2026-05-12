@@ -1,4 +1,7 @@
 // ─── Nearby Properties Section ────────────────────────────────────────────────
+// Fetches properties from backend API based on selected sort option.
+// Limit is determined by screen size: desktop=6, mobile=4
+
 const API_BASE_URL = 'http://localhost:3000/api';
 const IMG_BASE_URL = 'https://beta.imgservice.rentbyowner.com/640x300/';
 
@@ -26,13 +29,13 @@ function getLimit() {
   return window.innerWidth <= 768 ? 4 : 6;
 }
 
-// ── Build API URL ──
+// ── Build API URL based on sort option and screen limit ──
 function buildApiUrl(sortOption) {
   const limit = getLimit();
   return `${API_BASE_URL}/get-property?${sortOption}=true&limit=${limit}`;
 }
 
-// ── Format price ──
+// ── Format price as USD string ──
 function formatPrice(price) {
   return '$' + Number(price).toLocaleString('en-US');
 }
@@ -41,30 +44,31 @@ function formatPrice(price) {
 function buildPropertyCard(item, index) {
   const logoKey = LOGO_KEYS[index % LOGO_KEYS.length];
 
-  // ── Correct field names from JSON ──
-  const property    = item.Property;
-  const geoInfo     = item.GeoInfo;
-  const partner     = item.Partner;
+  // ── Extract fields from nested JSON structure ──
+  const property  = item.Property;
+  const geoInfo   = item.GeoInfo;
+  const partner   = item.Partner;
 
-  const name        = property.PropertyName   || 'Property Name';
-  const type        = property.PropertyType   || 'Villa';
-  const price       = property.Price          || property.CachePrice || null;
-  const rating      = property.ReviewScore    || '5.0';
-  const reviews     = property.Counts?.Reviews || '0';
-  const bedrooms    = property.Counts?.Bedroom || '—';
-  const bathrooms   = property.Counts?.Bathroom || '—';
-  const location    = geoInfo.Display         || '';
-  const featureImg  = property.FeatureImage   || '';
-  const bookingUrl  = partner.CacheURL        || '#';
-  const imageUrl    = `${IMG_BASE_URL}${featureImg}`;
+  const propertyId = item.ID;
+  const name       = property.PropertyName       || 'Property Name';
+  const type       = property.PropertyType       || 'Villa';
+  const price      = property.Price              || property.CachePrice || null;
+  const rating     = property.ReviewScore        || '5.0';
+  const reviews    = property.Counts?.Reviews    || '0';
+  const location   = geoInfo.Display             || '';
+  const featureImg = property.FeatureImage       || '';
+  const bookingUrl = partner.CacheURL            || '#';
+  const imageUrl   = `${IMG_BASE_URL}${featureImg}`;
 
-  // Top amenities
   const amenities = property.TopAmenities
     ? property.TopAmenities.map(a => a.Name).join(' · ')
     : 'Air Conditioner · Balcony/Terrace';
 
+  // ── Check if already favourited from localStorage ──
+  const favourited = isFavourite(propertyId);
+
   return `
-    <article class="property-card">
+    <article class="property-card" data-id="${propertyId}">
       <div class="property-img-wrap">
         <img
           src="${imageUrl}"
@@ -82,9 +86,18 @@ function buildPropertyCard(item, index) {
           <button type="button" aria-label="View on map">
             <i class="fas fa-map-marker-alt"></i>
           </button>
-          <button type="button" aria-label="Save to wishlist">
-            <i class="far fa-heart"></i>
+
+          <!-- Heart / Favourite button -->
+          <button
+            type="button"
+            class="favourite-btn ${favourited ? 'active' : ''}"
+            aria-label="${favourited ? 'Remove from favourites' : 'Add to favourites'}"
+            aria-pressed="${favourited}"
+            data-property-id="${propertyId}"
+          >
+            <i class="${favourited ? 'fas' : 'far'} fa-heart"></i>
           </button>
+
         </div>
       </div>
       <div class="property-body">
@@ -104,7 +117,12 @@ function buildPropertyCard(item, index) {
             class="booking-logo"
             height="20"
           />
-          <a href="${bookingUrl}" class="btn-availability" target="_blank" rel="noopener noreferrer">
+          <a
+            href="${bookingUrl}"
+            class="btn-availability"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             View Availability
           </a>
         </div>
@@ -141,6 +159,7 @@ async function fetchProperties(sortOption) {
       return;
     }
 
+    // Build and inject all property cards
     propertyGrid.innerHTML = items
       .map((item, index) => buildPropertyCard(item, index))
       .join('');
@@ -151,10 +170,35 @@ async function fetchProperties(sortOption) {
   }
 }
 
-// ── Sort dropdown change ──
+// ── Sort dropdown change handler ──
 sortSelect.addEventListener('change', () => {
   fetchProperties(sortSelect.value);
 });
 
 // ── Load Most Popular on page load ──
 fetchProperties('most-popular');
+
+// ── Favourite button click handler (event delegation) ──
+// Using delegation so it works even after cards are re-rendered
+propertyGrid.addEventListener('click', (e) => {
+
+  const btn = e.target.closest('.favourite-btn');
+  if (!btn) return;
+
+  const propertyId      = btn.dataset.propertyId;
+  const isNowFavourited = toggleFavourite(propertyId);
+  const icon            = btn.querySelector('i');
+
+  if (isNowFavourited) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    btn.setAttribute('aria-label', 'Remove from favourites');
+    icon.className = 'fas fa-heart'; // solid red heart
+  } else {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Add to favourites');
+    icon.className = 'far fa-heart'; // outline heart
+  }
+
+});

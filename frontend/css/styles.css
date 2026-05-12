@@ -1564,6 +1564,37 @@ main {
   }
 }
 
+/* ── Favourite Button ── */
+.favourite-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.88);
+  color: #444;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.favourite-btn:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+/* Active/favourited state — red heart */
+.favourite-btn.active {
+  color: #e74c3c;
+  background: #fff;
+}
+
+.favourite-btn.active i {
+  color: #e74c3c;
+}
+
 /*  Property Cards Grid  */
 .property-grid {
   display: grid;
